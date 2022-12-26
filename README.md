@@ -1,2 +1,2 @@
 # helpner
-Detect the content of CLI help messages
+Detect the content of CLI help messages 
