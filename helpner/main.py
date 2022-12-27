@@ -2,8 +2,8 @@
 
 import typer
 
-from .highlight import default_styles, highlight_message, parse_message
-from .utils import Opt, StdInArg
+from .highlight import default_styles, highlight_message
+from .utils import Opt, StdInArg, parse_message
 
 app = typer.Typer()
 
@@ -23,6 +23,12 @@ def highlight(
     style_arg: str = Opt(default=default_styles["ARG"]),
     style_opt: str = Opt(default=default_styles["OPT"]),
 ) -> None:
+    """
+    The colors are directly passed to rich as a string style:
+    https://rich.readthedocs.io/en/stable/style.html.
+    A guide for the colors can be seen at rich: 
+    https://rich.readthedocs.io/en/stable/appendix/colors.html#appendix-colors
+    """
     annotations = parse_message(msg)
     styles = {
         "CMD": style_cmd,
