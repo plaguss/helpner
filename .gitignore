@@ -134,4 +134,6 @@ notes.md
 helpner_core/packages
 helpner_core/training
 helpner_core/assets/**/*.jsonl
+helpner_core/**/*.jsonl
+helpner_core/**/*.spacy
 helpner_core/**/*.spacy
