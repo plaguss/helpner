@@ -8,9 +8,8 @@ authors = [
     {name = "Agustín Piqueres", email = "agustin.piqueres@gmail.com"}
 ]
 dependencies = [
-    "typer>=0.7.0",
+    "spacy>=3.4.4",
     "rich>=12.6.0",
-    "spacy>=3.4.4"
 ]
 
 license = {file = "LICENSE"}
@@ -19,21 +18,21 @@ classifiers = [
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
 ]
 readme = "README.md"
-dynamic = ['version', 'description']
+dynamic = ["version", "description"]
 
 [project.optional-dependencies]
 test = [
     "pytest>=7.2.0",
-    "pytest-cov>=4.0.0",
+    "coverage>=7.0.1",
     "nox>=2022.11.21"
 ]
 dev = [
     "black",
     "mypy",
-    "isort"
+    "isort",
+    "pandas>=1.5.2"  # For the initial scripts
 ]
 all = [
-    "pandas>=1.5.2"  # For the initial scripts
 ]
 
 [project.scripts]
