@@ -7,15 +7,12 @@ to select the colors
 from rich.console import Console
 from rich.text import Text
 
-from .utils import Arg, Opt, parse_message
-# app = typer.Typer()
-
 console = Console()
 
 default_styles = {
-    "CMD": "dim cyan",
-    "ARG": "magenta",
-    "OPT": "bold_red",
+    "CMD": "black on orchid",
+    "ARG": "black on deep_sky_blue1",
+    "OPT": "black on chartreuse3",
 }
 
 
