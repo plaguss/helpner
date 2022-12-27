@@ -129,3 +129,9 @@ dmypy.json
 .pyre/
 
 notes.md
+
+# Avoid tracking all the content from training/packaging
+helpner_core/packages
+helpner_core/training
+helpner_core/assets/**/*.jsonl
+helpner_core/**/*.spacy
