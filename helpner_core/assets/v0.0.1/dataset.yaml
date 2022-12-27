@@ -1,0 +1,161 @@
+version: "0.0.1"
+size: 10
+arguments:
+  indent_spaces:
+    dist: set
+    parameters:
+      values: [2, 4]
+  total_width:
+    dist: set
+    parameters:
+      values: [70, 78, 80, 90, 100, 120]
+  prob_name_capitalized:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  description_before:
+    dist: set
+    parameters:
+      values: [0, 1]
+  program_description_prob:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  usage_section:
+    dist: set
+    parameters:
+      values: [0, 1]
+  usage_pattern_capitalized:
+    dist: set
+    parameters:
+      values: [0, 1]
+  commands_section:
+    dist: custom
+    parameters:
+      p: [0.2, 0.8]
+      values: [0, 1]
+  commands_header:
+    dist: custom
+    parameters:
+      p: [0.2, 0.8]
+      values: [0, 1]
+  commands_capitalized:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  commands_documented_prob:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  arguments_section:
+    dist: set
+    parameters:
+      values: [0, 1]
+  arguments_header:
+    dist: set
+    parameters:
+      values: [0, 1]
+  arguments_style:
+    dist: custom
+    parameters:
+      p: [0.5, 0.5]
+      values: ["between_brackets", "all_caps"]
+  argument_repeated:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  argument_documented_prob:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  arguments_pattern_capitalized:
+    dist: set
+    parameters:
+      values: [0, 1]
+  argument_capitalized_prob:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  argument_optional_prob:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  # options_style: dict = {}  # Not defined
+  options_section:
+    dist: set
+    parameters:
+      values: [0, 1]
+  options_header:
+    dist: set
+    parameters:
+      values: [0, 1]
+  option_documented_prob:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  options_pattern_capitalized:
+    dist: set
+    parameters:
+      values: [0, 1]
+  options_shortcut:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  options_shortcut_capitalized_prob:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  options_shortcut_all_caps:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  exclusive_group_optional_prob:
+    dist: uniform-continuous
+    parameters:
+      min: 0
+      max: 1
+  options_mutually_exclusive_prob:
+  # This distribution should be more complex to allow having 0 most of the time
+  # and sometimes a value higher than 0.
+    dist: custom
+    parameters:
+      p: [0.9, 0.1]
+      values: [0, 1]
+  options_mutually_exclusive_group:
+    dist: uniform-discrete
+    parameters:
+      min: 0
+      max: 6
+  number_of_commands:
+    dist: uniform-discrete
+    parameters:
+      min: 0
+      max: 15
+  number_of_arguments:
+    dist: uniform-discrete
+    parameters:
+      min: 0
+      max: 15
+  number_of_options:
+    dist: uniform-discrete
+    parameters:
+      min: 0
+      max: 15
+  exclusive_programs:
+    dist: custom
+    parameters:
+      p: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      # The probability is obtained from f(x)=(1/sum(e^-x)_{i=1}^{10}) e^-x, x in [1,... 10]
+      values: [0.6321, 0.2326, 0.0856, 0.0315, 0.0116, 0.0043, 0.0016, 0.0006, 0.0002, 0.00008]
