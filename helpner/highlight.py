@@ -6,6 +6,8 @@ to select the colors
 
 from rich.console import Console
 from rich.text import Text
+from rich.panel import Panel
+from rich import print
 
 console = Console()
 
@@ -32,4 +34,11 @@ def highlight_message(
         text.stylize(styles[label], start=start, end=end)
 
     console.print(text)
-    # TODO: Add a panel with a legend
+    _add_legend(styles)
+
+
+def _add_legend(styles: dict[str, str] = default_styles) -> None:
+    """Adds a rich panel with a legend for every color. """
+    text = "  ".join([f"- [{v}]{k}[/{v}]" for k, v in styles.items()])
+    legend = Panel.fit(text, title="Legend")
+    print(legend)
