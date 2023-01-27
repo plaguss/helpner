@@ -8,7 +8,7 @@ authors = [
     {name = "Agustín Piqueres", email = "agustin.piqueres@gmail.com"}
 ]
 dependencies = [
-    "spacy>=3.4.4",
+    "spacy>=3.5.0",
     "rich>=12.6.0",
 ]
 
@@ -23,6 +23,7 @@ dynamic = ["version", "description"]
 [project.optional-dependencies]
 test = [
     "pytest>=7.2.0",
+    "pytest-mock>=3.10.0",
     "coverage>=7.0.1",
     "nox>=2022.11.21"
 ]
