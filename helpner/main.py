@@ -5,7 +5,7 @@ from rich import print, print_json
 from .highlight import default_styles, highlight_message
 from .utils import Opt, StdInArg, parse_message
 from rich import print_json
-import json
+from download import download_model
 
 app = typer.Typer()
 
@@ -56,6 +56,11 @@ def highlight(
     return highlight_message(
         annotations["message"], annotations["labels"], styles=styles
     )
+
+
+@app.command()
+def download() -> None:
+    download_model()
 
 
 if __name__ == "__main__":
