@@ -26,7 +26,10 @@ def _process_message(msg: str) -> tuple[None] | tuple[Span, ...]:
         tuple: It returns a tuple with the entities (if any)
     """
     # This function is to simplify the testing only.
-    nlp = spacy.load(HELPNER_MODEL)
+    try:
+        nlp = spacy.load(HELPNER_MODEL)
+    except OSError as e:
+        raise ValueError("The model couldn't be found, try running `helpner download` first") from e
     return nlp(msg).ents
 
 
