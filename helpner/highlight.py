@@ -9,7 +9,7 @@ from rich.text import Text
 from rich.panel import Panel
 from rich import print
 
-console = Console()
+console = Console(record=True)
 
 default_styles = {
     "CMD": "black on orchid",
@@ -22,12 +22,17 @@ def highlight_message(
     msg: str,
     labels: list[tuple[str, int, int]],
     styles: dict[str, str] = default_styles,
+    save_svg: bool = False
 ) -> None:
     """Highlights a help message with the annotations obtained from the model.
 
     Args:
         msg (str): _description_
         annotations (dict): _description_
+        styles (): _description_
+        save_svg (bool): Whether to save the console output as svg.
+            Visit https://rich.readthedocs.io/en/stable/console.html#exporting-svgs
+            for more info. Defaults to False.
     """
     text = Text(msg)
     for label, start, end in labels:
@@ -36,6 +41,8 @@ def highlight_message(
     console.print(Panel.fit(text, title="[white]Program help[/white]", border_style="red"))
     legend = _add_legend(styles)
     console.print(legend)
+    if save_svg:
+        console.save_svg("program-help.svg", title="Helpner")
 
 
 def _add_legend(styles: dict[str, str] = default_styles) -> None:
