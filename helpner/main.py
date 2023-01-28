@@ -5,7 +5,7 @@ from rich import print, print_json
 from .highlight import default_styles, highlight_message
 from .utils import Opt, StdInArg, parse_message
 from rich import print_json
-from download import download_model
+from .download import download_model
 
 app = typer.Typer()
 
@@ -60,6 +60,7 @@ def highlight(
 
 @app.command()
 def download() -> None:
+    """Download the spaCy model to start playing. """
     download_model()
 
 
