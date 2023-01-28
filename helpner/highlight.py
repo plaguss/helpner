@@ -33,12 +33,13 @@ def highlight_message(
     for label, start, end in labels:
         text.stylize(styles[label], start=start, end=end)
 
-    console.print(text)
-    _add_legend(styles)
+    console.print(Panel.fit(text, title="[white]Program help[/white]", border_style="red"))
+    legend = _add_legend(styles)
+    console.print(legend)
 
 
 def _add_legend(styles: dict[str, str] = default_styles) -> None:
     """Adds a rich panel with a legend for every color. """
     text = "  ".join([f"- [{v}]{k}[/{v}]" for k, v in styles.items()])
-    legend = Panel.fit(text, title="Legend")
-    print(legend)
+    legend = Panel.fit(text, title="[white]Legend[/white]", border_style="red")
+    return legend
