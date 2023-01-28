@@ -8,7 +8,7 @@ import typer
 Arg = typer.Argument
 Opt = typer.Option
 
-HELPNER_MODEL = "en_helpner"
+HELPNER_MODEL = "en_helpner_core"
 
 # StdInArg argument is copied from:
 # https://github.com/tiangolo/typer/issues/345#issuecomment-1297432321
