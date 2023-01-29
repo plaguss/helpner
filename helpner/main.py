@@ -40,7 +40,8 @@ def highlight(
     style_cmd: str = Opt(default=default_styles["CMD"]),
     style_arg: str = Opt(default=default_styles["ARG"]),
     style_opt: str = Opt(default=default_styles["OPT"]),
-    save_svg: bool = False
+    save_svg: bool = False,
+    svg_filename: str = Opt(default="program-help.svg", help="Name of the svg file.")
 ) -> None:
     """
     The colors are directly passed to rich as a string style:
@@ -55,7 +56,7 @@ def highlight(
         "OPT": style_opt,
     }
     return highlight_message(
-        annotations["message"], annotations["labels"], styles=styles, save_svg=save_svg
+        annotations["message"], annotations["labels"], styles=styles, save_svg=save_svg, svg_filename=svg_filename
     )
 
 

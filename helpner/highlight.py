@@ -22,7 +22,8 @@ def highlight_message(
     msg: str,
     labels: list[tuple[str, int, int]],
     styles: dict[str, str] = default_styles,
-    save_svg: bool = False
+    save_svg: bool = False,
+    svg_filename: str = "program-help.svg"
 ) -> None:
     """Highlights a help message with the annotations obtained from the model.
 
@@ -33,6 +34,7 @@ def highlight_message(
         save_svg (bool): Whether to save the console output as svg.
             Visit https://rich.readthedocs.io/en/stable/console.html#exporting-svgs
             for more info. Defaults to False.
+        svg_filename (str): Name of the svg file. Defaults to program-help.svg
     """
     text = Text(msg)
     for label, start, end in labels:
@@ -42,7 +44,7 @@ def highlight_message(
     legend = _add_legend(styles)
     console.print(legend)
     if save_svg:
-        console.save_svg("program-help.svg", title="Helpner")
+        console.save_svg(svg_filename, title="Helpner")
 
 
 def _add_legend(styles: dict[str, str] = default_styles) -> None:
