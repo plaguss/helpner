@@ -1,20 +1,16 @@
 """Facility to install the model from GitHub releases. 
 It looks through the releases, finds the last one added,
 and extracts the wheel from those assets.
-
-TODO:
-    - Check for errors on connection, if its not found, and print
-        the url where the assets can be installed from.
-    - Expose as a subcommand from helpner for
 """
 
 import json
 import subprocess
 import sys
+from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
-from urllib.error import URLError, HTTPError
 
 from packaging.version import parse
+
 RELEASES_URL = r"https://github.com/plaguss/helpner-core/releases"
 RELEASES_ENDPOINT = r"https://api.github.com/repos/plaguss/helpner-core/releases"
 
@@ -30,7 +26,9 @@ def download_model() -> None:
         with urlopen(RELEASES_ENDPOINT) as response:
             body = response.read()
     except (URLError, HTTPError) as e:
-        raise HTTPError(f"Something failed, the model should be installed from: {RELEASES_URL}") from e
+        raise HTTPError(
+            f"Something failed, the model should be installed from: {RELEASES_URL}"
+        ) from e
     else:
         releases = json.loads(body)
 
