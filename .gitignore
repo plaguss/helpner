@@ -137,3 +137,4 @@ helpner_core/assets/**/*.jsonl
 helpner_core/**/*.jsonl
 helpner_core/**/*.spacy
 helpner_core/**/*.spacy
+*.excalidraw
