@@ -4,7 +4,6 @@ import typer
 from rich import print, print_json
 from .highlight import default_styles, highlight_message
 from .utils import Opt, StdInArg, parse_message
-from rich import print_json
 from .download import download_model
 
 app = typer.Typer()
@@ -22,14 +21,15 @@ def parse(
     Commands, Arguments and Options.
     """
     parsed = parse_message(help_message)
-    content = {k: v for k, v in zip(parsed["entities"], parsed["labels"])}
+    content = {k.text: v for k, v in zip(parsed["entities"], parsed["labels"])}
 
     if len(content) == 0:
         print("Nothing was found")
         raise typer.Exit()
 
     if json:
-        print_json(json.dumps(content))
+        import json as jsonlib
+        print_json(jsonlib.dumps(content))
     else:
         print(content)
 
