@@ -157,7 +157,7 @@ This command will (pip) install the model from [github releases](https://github.
 
 The following sketch[^3] shows the parts involved in the final program:
 
-[^3] Visit [excalidraw](https://excalidraw.com/) if you don't know it, it's amazing.
+[^3]: Visit [excalidraw](https://excalidraw.com/) if you don't know it, it's amazing.
 
 ![image-arch](./assets/helpner-arch.png)
 
