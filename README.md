@@ -48,21 +48,17 @@ With this in mind, lets keep reading :smile:
 
 ## ...why this:question:
 
-There is no compelling reason. While reading through [docopt-ng](https://github.com/jazzband/docopt-ng) I thought if it would be possible to detect the components [^1] of a command line interface program and extract them. It turned out to be a fun project. It isn't the best approach for the task, but it allowed to explore a different application of AI, this time from the from and for the console (a nice mix of [spaCy](https://github.com/explosion/spaCy) and [rich](https://github.com/Textualize/rich)!).
+Why not? While reading through [docopt-ng](https://github.com/jazzband/docopt-ng) I thought if it would be possible to detect the components [^1] of a command line interface program and extract them. It turned out to be a fun project. It isn't the best approach for the task, but it allowed to explore a different application of AI, this time from the from and for the console (a nice mix of [spaCy](https://github.com/explosion/spaCy) and [rich](https://github.com/Textualize/rich)!).
 
 [^1]: See [docopt](http://docopt.org/) for a better explanation of the components.
 
 ## 👩‍💻 Usage
 
-WORK IN PROGRESS, EXAMPLES NEEDED.
-
 *helpner*'s CLI is composed of 3 subcommands:
 
-- `helpner highlight`: Main command, throw some color :rainbow: to the help message with *rich*!
+- `helpner highlight`: Main command, throw some color :rainbow: to the help messages with *rich*!
 
-Pipe the help message from the CLI program stdin to the program, and it will print back the original message with the entities detected highlighted and wrapped in a panel.
-
-Modify the [style](https://rich.readthedocs.io/en/stable/style.html) applied to each entity using the options:
+Pipe the help message from the CLI program stdin to the program, and it will print back the original message with the entities detected highlighted and wrapped in a panel. The [style](https://rich.readthedocs.io/en/stable/style.html) applied can be modified for each entity using the options:
 
 ```sh
 ❯ make --help | helpner highlight --style-opt 'red on white' --style-arg 'bold yellow' --style-cmd 'underline blue'
@@ -70,7 +66,7 @@ Modify the [style](https://rich.readthedocs.io/en/stable/style.html) applied to 
 
 ![make-other](./assets/make-other-help.svg)
 
-And lastly the console content can be captured and written as an svg file thanks to rich:
+It can also capture console content and write it to an svg file thanks to rich:
 
 ```sh
 ❯ make --help | helpner highlight --style-opt 'red on white' --style-arg 'bold yellow' --style-cmd 'underline blue' --save-svg --svg-filename make-other-help.svg
@@ -139,20 +135,31 @@ You can install `helpner` via `pip` (almost ready):
 pip install helpner
 ```
 
-The package depends on a spaCy model which must be downloaded in a second step (similar to how spaCy deals with their models)[^2]:
+The program still needs a model to make the predictions, which can be obtained similar to how you would do it with [spaCy's models](https://spacy.io/usage/models)[^2].
 
 [^2]: To see how spaCy's `download` command works visit: [`spacy download`](https://spacy.io/api/cli#download).
 
+So in a second step, you can run the following command:
 
 ```sh
 helpner download
 ```
 
+This command will (pip) install the model from [github releases](https://github.com/plaguss/helpner-core/releases), which facilitates two things:
+
+- The model can be updated independently from *helpner*, given that both things can evolve at different speeds
+
+- Simplifies finding the most updated model available (which should be the only one relevant anyway).
+
+*In case the command fails and it couldn't install the package, it will point to the models directly.*
+
 ## :bulb: How does it work?
 
-The following figure shows the parts involved in the final program:
+The following sketch[^3] shows the parts involved in the final program:
 
-![photo](./assets/helpner-arch.png)
+[^3] Visit [excalidraw](https://excalidraw.com/) if you don't know it, it's amazing.
+
+![image-arch](./assets/helpner-arch.png)
 
 - [cli-help-maker](https://github.com/plaguss/cli-help-maker): A library that allows to generate help messages for dummy command line programs, with annotations of the three entities (`CMD`, `ARG` and `OPT`).
 
