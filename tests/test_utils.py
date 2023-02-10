@@ -1,7 +1,8 @@
 
+import spacy
+
 import helpner.utils as ut
 
-import spacy
 
 def test_parse_message(mocker):
     # Simple way of getting a Span
