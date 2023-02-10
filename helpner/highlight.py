@@ -1,6 +1,7 @@
 """_summary_
 
-Visit [standard colors](https://rich.readthedocs.io/en/stable/appendix/colors.html#appendix-colors)
+Visit 
+[colors](https://rich.readthedocs.io/en/stable/appendix/colors.html#appendix-colors)
 to select the colors 
 """
 
