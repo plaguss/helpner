@@ -48,7 +48,7 @@ def highlight_message(
         console.save_svg(svg_filename, title="Helpner")
 
 
-def _add_legend(styles: dict[str, str] = default_styles) -> None:
+def _add_legend(styles: dict[str, str] = default_styles) -> Panel:
     """Adds a rich panel with a legend for every color."""
     text = "  ".join([f"- [{v}]{k}[/{v}]" for k, v in styles.items()])
     legend = Panel.fit(text, title="[white]Legend[/white]", border_style="red")
