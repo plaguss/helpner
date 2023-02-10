@@ -26,7 +26,7 @@ def download_model() -> None:
         with urlopen(RELEASES_ENDPOINT) as response:
             body = response.read()
     except (URLError, HTTPError) as e:
-        raise HTTPError(
+        raise URLError(
             f"Something failed, the model should be installed from: {RELEASES_URL}"
         ) from e
     else:
