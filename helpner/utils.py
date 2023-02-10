@@ -24,7 +24,7 @@ ParsedMessage = TypedDict(
 )
 
 
-def _process_message(msg: str) -> tuple[Span, ...]:
+def _process_message(msg: str) -> tuple[Span, ...]:  # pragma: no cover
     """Load the spacy model, process the text and return the entities.
 
     Args:
