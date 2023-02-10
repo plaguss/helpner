@@ -2,9 +2,10 @@
 
 import typer
 from rich import print, print_json
+
+from .download import download_model
 from .highlight import default_styles, highlight_message
 from .utils import Opt, StdInArg, parse_message
-from .download import download_model
 
 app = typer.Typer()
 
@@ -14,7 +15,8 @@ def parse(
     help_message: str = StdInArg,
     json: bool = Opt(
         True,
-        help="Print the content as a json or as a dict. May be handy to write the content to a file.",
+        help="Print the content as a json or as a dict. May be handy to write "
+        "the content to a file.",
     ),
 ) -> None:
     """Program to parse a CLI help message and determine the positions of
@@ -29,6 +31,7 @@ def parse(
 
     if json:
         import json as jsonlib
+
         print_json(jsonlib.dumps(content))
     else:
         print(content)
@@ -41,7 +44,7 @@ def highlight(
     style_arg: str = Opt(default=default_styles["ARG"]),
     style_opt: str = Opt(default=default_styles["OPT"]),
     save_svg: bool = False,
-    svg_filename: str = Opt(default="program-help.svg", help="Name of the svg file.")
+    svg_filename: str = Opt(default="program-help.svg", help="Name of the svg file."),
 ) -> None:
     """
     The colors are directly passed to rich as a string style:
@@ -56,13 +59,17 @@ def highlight(
         "OPT": style_opt,
     }
     return highlight_message(
-        annotations["message"], annotations["labels"], styles=styles, save_svg=save_svg, svg_filename=svg_filename
+        annotations["message"],
+        annotations["labels"],
+        styles=styles,
+        save_svg=save_svg,
+        svg_filename=svg_filename,
     )
 
 
 @app.command()
 def download() -> None:
-    """Download the spaCy model to start playing. """
+    """Download the spaCy model to start playing."""
     download_model()
 
 

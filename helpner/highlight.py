@@ -5,8 +5,8 @@ to select the colors
 """
 
 from rich.console import Console
-from rich.text import Text
 from rich.panel import Panel
+from rich.text import Text
 
 console = Console(record=True)
 
@@ -22,7 +22,7 @@ def highlight_message(
     labels: list[tuple[str, int, int]],
     styles: dict[str, str] = default_styles,
     save_svg: bool = False,
-    svg_filename: str = "program-help.svg"
+    svg_filename: str = "program-help.svg",
 ) -> None:
     """Highlights a help message with the annotations obtained from the model.
 
@@ -39,7 +39,9 @@ def highlight_message(
     for label, start, end in labels:
         text.stylize(styles[label], start=start, end=end)
 
-    console.print(Panel.fit(text, title="[white]Program help[/white]", border_style="red"))
+    console.print(
+        Panel.fit(text, title="[white]Program help[/white]", border_style="red")
+    )
     legend = _add_legend(styles)
     console.print(legend)
     if save_svg:
@@ -47,7 +49,7 @@ def highlight_message(
 
 
 def _add_legend(styles: dict[str, str] = default_styles) -> None:
-    """Adds a rich panel with a legend for every color. """
+    """Adds a rich panel with a legend for every color."""
     text = "  ".join([f"- [{v}]{k}[/{v}]" for k, v in styles.items()])
     legend = Panel.fit(text, title="[white]Legend[/white]", border_style="red")
     return legend

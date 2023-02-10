@@ -1,9 +1,8 @@
-
 import sys
 
 import spacy
-from spacy.tokens.span import Span
 import typer
+from spacy.tokens.span import Span
 
 Arg = typer.Argument
 Opt = typer.Option
@@ -12,9 +11,13 @@ HELPNER_MODEL = "en_helpner_core"
 
 # StdInArg argument is copied from:
 # https://github.com/tiangolo/typer/issues/345#issuecomment-1297432321
-StdInArg = Arg(... if sys.stdin.isatty() else sys.stdin.read().strip(), help="Command line help message.")
+StdInArg = Arg(
+    ... if sys.stdin.isatty() else sys.stdin.read().strip(),
+    help="Command line help message.",
+)
 
 Annotations = dict[str, tuple[str, int, int]]
+
 
 def _process_message(msg: str) -> tuple[None] | tuple[Span, ...]:
     """Load the spacy model, process the text and return the entities.
@@ -29,7 +32,9 @@ def _process_message(msg: str) -> tuple[None] | tuple[Span, ...]:
     try:
         nlp = spacy.load(HELPNER_MODEL)
     except OSError as e:
-        raise ValueError("The model couldn't be found, try running `helpner download` first") from e
+        raise ValueError(
+            "The model couldn't be found, try running `helpner download` first"
+        ) from e
     return nlp(msg).ents
 
 
