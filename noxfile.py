@@ -39,7 +39,8 @@ def lint(session):
 @nox.session
 def typecheck(session):
     session.install("mypy")
-    session.run("mypy", "-p", "helpner")
+    install_flit_dev_deps(session)
+    session.run("mypy", "-p", "helpner", "--no-incremental")
 
 
 @nox.session
