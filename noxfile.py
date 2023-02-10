@@ -8,21 +8,15 @@ def install_flit_dev_deps(session, with_model=False):
         session.run("helpner", "download")
 
 
-@nox.session(reuse_venv=True)
-def unit_tests(session):
-    session.run("flit", "install", "--deps", "develop")
-    session.run("pytest", "tests/unit")
-
-
-@nox.session(reuse_venv=True)
-def integration_tests(session):
-    session.run("flit", "install", "--deps", "develop")
-    session.run("pytest", "tests/integration")
+@nox.session
+def tests(session):
+    install_flit_dev_deps(session, with_model=True)
+    session.run("pytest", "tests")
 
 
 @nox.session
 def coverage(session):
-    install_flit_dev_deps(session)
+    install_flit_dev_deps(session, with_model=True)
     session.run(
         "python",
         "-m",
@@ -36,7 +30,20 @@ def coverage(session):
 
 
 @nox.session
+def lint(session):
+    session.install("black", "ruff")
+    session.run("ruff", "helpner")
+    session.run("black", "--check", "helpner")
+
+
+@nox.session
+def typecheck(session):
+    session.install("mypy")
+    session.run("mypy", "-p", "helpner")
+
+
+@nox.session
 def format(session):
-    session.run("flit", "install", "--deps", "develop")
-    session.run("isort", "cli_help_maker", "examples", "tests")
-    session.run("black", "cli_help_maker", "examples", "tests")
+    session.install("black", "ruff")
+    session.run("ruff", "helpner", "--fix")
+    session.run("black", "helpner")
