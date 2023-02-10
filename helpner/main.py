@@ -42,12 +42,21 @@ def parse(
 @app.command()
 def highlight(
     help_message: str = StdInArg,
-    style_cmd: str = Opt(default=default_styles["CMD"]),
-    style_arg: str = Opt(default=default_styles["ARG"]),
-    style_opt: str = Opt(default=default_styles["OPT"]),
+    style_cmd: str = Opt(
+        default=default_styles["CMD"],
+        help="rich style to be passed for CMD entitites"
+    ),
+    style_arg: str = Opt(
+        default=default_styles["ARG"],
+        help="rich style to be passed for ARG entitites"
+    ),
+    style_opt: str = Opt(
+        default=default_styles["OPT"],
+        help="rich style to be passed for ARG entitites"
+    ),
     save_svg: bool = False,
     svg_filename: str = Opt(default="program-help.svg", help="Name of the svg file."),
-) -> None:
+) -> None:  # pragma: no cover
     """
     The colors are directly passed to rich as a string style:
     https://rich.readthedocs.io/en/stable/style.html.
@@ -70,7 +79,7 @@ def highlight(
 
 
 @app.command()
-def download() -> None:
+def download() -> None:  # pragma: no cover
     """Download the spaCy model to start playing."""
     download_model()
 
