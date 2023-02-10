@@ -16,10 +16,10 @@ StdInArg = Arg(
     help="Command line help message.",
 )
 
-Annotations = dict[str, tuple[str, int, int]]
+Annotations = list[tuple[str, int, int]]
 
 
-def _process_message(msg: str) -> tuple[None] | tuple[Span, ...]:
+def _process_message(msg: str) -> tuple[Span, ...]:
     """Load the spacy model, process the text and return the entities.
 
     Args:
@@ -38,7 +38,7 @@ def _process_message(msg: str) -> tuple[None] | tuple[Span, ...]:
     return nlp(msg).ents
 
 
-def parse_message(msg: str) -> dict[str, str | Annotations]:
+def parse_message(msg: str) -> dict[str, str | tuple[Span, ...] | Annotations]:
     """Processes a string message (its expected to be the result of
     calling from the console a help message, i.e. `git add -h` or
     `pip install --help`).
@@ -50,7 +50,6 @@ def parse_message(msg: str) -> dict[str, str | Annotations]:
         dict (dict[str, str | Annotations]): Dict containing the
             original message and a list of tuples with the labels.
     """
-    # TODO: Check if the model was properly installed/downloaded
     entities = _process_message(msg)
     return {
         "message": msg,
