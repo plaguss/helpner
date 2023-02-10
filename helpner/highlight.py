@@ -1,4 +1,4 @@
-"""_summary_
+"""Module containing functions to highlight a help message.
 
 Visit 
 [colors](https://rich.readthedocs.io/en/stable/appendix/colors.html#appendix-colors)
@@ -24,13 +24,16 @@ def highlight_message(
     styles: dict[str, str] = default_styles,
     save_svg: bool = False,
     svg_filename: str = "program-help.svg",
-) -> None:
+) -> None:  # pragma: no cover, tested by rich
     """Highlights a help message with the annotations obtained from the model.
 
     Args:
-        msg (str): _description_
-        annotations (dict): _description_
-        styles (): _description_
+        msg (str):
+            The help message from the program.
+        labels list[tuple[str, int, int]]:
+            Annotations obtained from the NER model.
+        styles dict[str, str]: 
+            Styles to be passed to rich, for different types of colors.
         save_svg (bool): Whether to save the console output as svg.
             Visit https://rich.readthedocs.io/en/stable/console.html#exporting-svgs
             for more info. Defaults to False.
@@ -49,7 +52,7 @@ def highlight_message(
         console.save_svg(svg_filename, title="Helpner")
 
 
-def _add_legend(styles: dict[str, str] = default_styles) -> Panel:
+def _add_legend(styles: dict[str, str] = default_styles) -> Panel:  # pragma: no cover, tested by rich
     """Adds a rich panel with a legend for every color."""
     text = "  ".join([f"- [{v}]{k}[/{v}]" for k, v in styles.items()])
     legend = Panel.fit(text, title="[white]Legend[/white]", border_style="red")
