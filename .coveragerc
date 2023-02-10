@@ -1,0 +1,6 @@
+[report]
+omit =
+    # Its tested with rich
+    helpner/highlight.py
+    # There are redirections to functions
+    helpner/main.py
