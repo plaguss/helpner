@@ -15,7 +15,9 @@ dependencies = [
 license = {file = "LICENSE"}
 classifiers = [
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
 ]
 readme = "README.md"
 dynamic = ["version", "description"]
@@ -31,7 +33,6 @@ test = [
 dev = [
     "black",
     "mypy",
-    "isort",
     "ruff"
 ]
 
@@ -43,3 +44,13 @@ Source = "https://github.com/plaguss/helpner"
 
 [tool.pytest]
 addopts = ["--cov=helpner", "--cov-report=term-missing"]
+
+[tool.ruff]
+# Enable Pyflakes and pycodestyle rules.
+select = ["E", "F", "I001"]
+line-length = 88  # Same as black
+# Assume Python 3.11.
+target-version = "py311"
+
+[tool.ruff.pydocstyle]
+convention = "google" 
