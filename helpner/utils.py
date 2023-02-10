@@ -1,4 +1,5 @@
 import sys
+from typing import TypedDict
 
 import spacy
 import typer
@@ -17,6 +18,10 @@ StdInArg = Arg(
 )
 
 Annotations = list[tuple[str, int, int]]
+ParsedMessage = TypedDict(
+    "ParsedMessage",
+    {"message": str, "entities": tuple[Span, ...], "labels": Annotations},
+)
 
 
 def _process_message(msg: str) -> tuple[Span, ...]:
@@ -38,7 +43,7 @@ def _process_message(msg: str) -> tuple[Span, ...]:
     return nlp(msg).ents
 
 
-def parse_message(msg: str) -> dict[str, str | tuple[Span, ...] | Annotations]:
+def parse_message(msg: str) -> ParsedMessage:
     """Processes a string message (its expected to be the result of
     calling from the console a help message, i.e. `git add -h` or
     `pip install --help`).
@@ -47,8 +52,9 @@ def parse_message(msg: str) -> dict[str, str | tuple[Span, ...] | Annotations]:
         msg (str): A help message from a cli.
 
     Returns:
-        dict (dict[str, str | Annotations]): Dict containing the
-            original message and a list of tuples with the labels.
+        dict (ParsedMessage): Dict containing the
+            original message, entities obtained from spacy
+            and a list of tuples with the labels.
     """
     entities = _process_message(msg)
     return {

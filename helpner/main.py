@@ -23,7 +23,9 @@ def parse(
     Commands, Arguments and Options.
     """
     parsed = parse_message(help_message)
-    content = {k.text: v for k, v in zip(parsed["entities"], parsed["labels"])}
+    content = {
+        k.text: v for k, v in zip(parsed["entities"], parsed["labels"])  # type: ignore
+    }
 
     if len(content) == 0:
         print("Nothing was found")
