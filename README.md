@@ -12,10 +12,9 @@ Helpner can be used to explore the positions of `commands (CMD)`, `arguments (AR
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![pyversions](https://img.shields.io/pypi/pyversions/helpner.svg)](https://pypi.python.org/pypi/helpner)
 ![ci workflow](https://github.com/plaguss/cli-help-maker/actions/workflows/ci.yml/badge.svg)
+![ci workflow](https://github.com/plaguss/helpner/actions/workflows/ci.yml/badge.svg)
 
 <!-- [![codecov](https://codecov.io/gh/plaguss/cli-help-maker/branch/main/graph/badge.svg?token=AVKH6TS7G7)](https://codecov.io/gh/plaguss/cli-help-maker) 
-
-![ci workflow](https://github.com/plaguss/cli-help-maker/actions/workflows/ci.yml/badge.svg)
 
 -->
 
