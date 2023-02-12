@@ -43,16 +43,13 @@ def parse(
 def highlight(
     help_message: str = StdInArg,
     style_cmd: str = Opt(
-        default=default_styles["CMD"],
-        help="rich style to be passed for CMD entitites"
+        default=default_styles["CMD"], help="rich style to be passed for CMD entitites"
     ),
     style_arg: str = Opt(
-        default=default_styles["ARG"],
-        help="rich style to be passed for ARG entitites"
+        default=default_styles["ARG"], help="rich style to be passed for ARG entitites"
     ),
     style_opt: str = Opt(
-        default=default_styles["OPT"],
-        help="rich style to be passed for ARG entitites"
+        default=default_styles["OPT"], help="rich style to be passed for ARG entitites"
     ),
     save_svg: bool = False,
     svg_filename: str = Opt(default="program-help.svg", help="Name of the svg file."),
