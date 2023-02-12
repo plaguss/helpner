@@ -45,6 +45,7 @@ jobs:
 
       - name: Run linters
         run: |
+          pip install nox
           nox -s lint
 
   typecheck:
@@ -60,4 +61,5 @@ jobs:
 
       - name: Run mypy
         run: |
+          pip install nox
           nox -s typecheck
