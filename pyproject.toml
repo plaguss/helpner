@@ -9,7 +9,7 @@ authors = [
 ]
 dependencies = [
     "spacy>=3.5.0",
-    "rich>=12.6.0",
+    "rich>=15.0.0",
 ]
 
 license = {file = "LICENSE"}
