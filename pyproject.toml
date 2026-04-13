@@ -8,7 +8,7 @@ authors = [
     {name = "Agustín Piqueres", email = "agustin.piqueres@gmail.com"}
 ]
 dependencies = [
-    "spacy>=3.5.0",
+    "spacy>=3.8.14",
     "rich>=12.6.0",
 ]
 
